@@ -102,3 +102,4 @@ C:\WorkSpace\Comeon\Comeon.Web\obj\Debug\netcoreapp3.1\Comeon.Web.Views.pdb
 C:\WorkSpace\Comeon\Comeon.Web\bin\Debug\netcoreapp3.1\Consul.dll
 C:\WorkSpace\Comeon\Comeon.Web\obj\Debug\netcoreapp3.1\Comeon.Web.csproj.CoreCompileInputs.cache
 C:\WorkSpace\Comeon\Comeon.Web\obj\Debug\netcoreapp3.1\Comeon.Web.MvcApplicationPartsAssemblyInfo.cache
+C:\WorkSpace\Comeon\Comeon.Web\obj\Debug\netcoreapp3.1\Comeon.Web.csprojAssemblyReference.cache

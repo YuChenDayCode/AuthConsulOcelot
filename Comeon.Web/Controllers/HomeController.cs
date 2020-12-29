@@ -44,12 +44,7 @@ namespace Comeon.Web.Controllers
             };
 
             Dictionary<string, object> children = JsonConvert.DeserializeObject<Dictionary<string, object>>(JsonConvert.SerializeObject(authdata));
-            StringBuilder str = new StringBuilder();
-            foreach (var item in children)
-            {
-                str.Append($"{item.Key}={item.Value}&");
-            }
-            string re = str.ToString().TrimEnd('&');
+            var re = string.Join('&', children.Select(s => $"{s.Key}={s.Value}"));
             HttpContent httpContent = new StringContent(re);
             httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
             httpContent.Headers.ContentLength = new ASCIIEncoding().GetBytes(re).Length;
