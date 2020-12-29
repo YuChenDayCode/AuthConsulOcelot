@@ -1,0 +1,84 @@
+{
+  /*************默认不区分大小写*************************************/
+  //  "Routes": [
+  //    {
+  //      "UpstreamPathTemplate": "/T7526/{url}", //入口地址
+  //      "UpstreamHttpMethod": [ "Get", "Post" ],
+
+  //      "DownstreamPathTemplate": "/{url}", //映射转换为改地址
+  //      "DownstreamScheme": "http",
+  //      "DownstreamHostAndPorts": [
+  //        {
+  //          "Host": "127.0.0.1",
+  //          "Port": 5726
+  //        },
+  //        {
+  //          "Host": "127.0.0.1",
+  //          "Port": 5727
+  //        },
+  //        {
+  //          "Host": "127.0.0.1",
+  //          "Port": 5728
+  //        }
+  //      ],
+  //      "LoadBalancerOptions": { //负载均衡选项
+  //        "Type": "RoundRobin" //轮询
+  //        //"LeastConnection",//最小连接
+  //        //"NoLoadBalance", //不负载均衡
+  //        //"CookieStickSession" //基于cookie 转发到对应实例
+
+  //      },
+  //      "QoSOptions": {
+  //        "TimeoutValue": 360000
+  //      }
+  //    }
+  //  ]
+  //}
+
+
+
+  /**********************结合consul*************************/
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/T/{url}", //入口地址
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+
+      "DownstreamPathTemplate": "/{url}", //映射转换为改地址
+      "DownstreamScheme": "http",
+
+      "UseServiceDiscovery": true, //使用服务发现
+      "ServiceName": "ApiService", //Consul服务名称
+
+      "LoadBalancerOptions": { //负载均衡选项
+        "Type": "RoundRobin"
+      },
+
+      "FileCacheOptions": { //缓存配置
+        "TtlSeconds": 15
+      },
+
+      "RateLimitOptions": { //限流
+        "ClientWhitelist": [ "Yuchen" ], //白名单 ClientId 区分大小写
+        "EnableRateLimiting": true, //是否启用限流
+        "Period": "1s", // 统计时段 1s, 5m, 1h, 1d内
+        "Limit": 1, //最多访问几次
+        "PeriodTimespan": 5 // 超限之后 多少时间后才能继续请求(秒)
+      }
+    }
+  ],
+
+  "GlobalConfiguration": {
+    "BaseUrl": "http://127.0.0.1:6299", //网关对外地址
+    "ServiceDiscoveryProvider": {
+      "Host": "127.0.0.1",
+      "Port": 8500,
+      "Type": "Consul" //指定consul发现服务
+    },
+
+    "RateLimitOptions": {
+      "QuotaExceededMessage": "Too Fast!!!",  //消息过载时返回提示信息
+      "HttpStatusCode": 999, //错误码 httpcode
+      //"ClientIdHeader": "Test"
+    }
+  }
+}
