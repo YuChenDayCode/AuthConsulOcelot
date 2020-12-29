@@ -29,3 +29,4 @@ C:\WorkSpace\Comeon\Comeon.AuthenticationCenter\obj\Debug\netcoreapp3.1\Comeon.A
 C:\WorkSpace\Comeon\Comeon.AuthenticationCenter\obj\Debug\netcoreapp3.1\Comeon.AuthenticationCenter.dll
 C:\WorkSpace\Comeon\Comeon.AuthenticationCenter\obj\Debug\netcoreapp3.1\Comeon.AuthenticationCenter.pdb
 C:\WorkSpace\Comeon\Comeon.AuthenticationCenter\obj\Debug\netcoreapp3.1\Comeon.AuthenticationCenter.genruntimeconfig.cache
+C:\WorkSpace\Comeon\Comeon.AuthenticationCenter\obj\Debug\netcoreapp3.1\Comeon.AuthenticationCenter.csprojAssemblyReference.cache

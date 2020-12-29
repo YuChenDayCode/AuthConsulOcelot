@@ -11,30 +11,28 @@ namespace Comeon.Gateway
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            //string AuthProviderKey = "UserGatewayKey";
-            //services.AddAuthentication("Bearer")
-            //    .AddIdentityServerAuthentication(AuthProviderKey, options =>
-            //    {
-            //        options.Authority = "http://localhost:7200"; //id4 ·şÎñµØÖ·
-            //        options.ApiName = "UserApi";
-            //        options.RequireHttpsMetadata = false; //²»ĞèÒªhttps
-            //        options.SupportedTokens = IdentityServer4.AccessTokenValidation.SupportedTokens.Both;
-            //    });
-
-            services.AddOcelot() //ÖØµãÔÚÅäÖÃÎÄ¼ş configuration.json
-                .AddConsul()    //Ê¹ÓÃconsulÖÎÀí·şÎñ Ocelot.Provider.Consul
-                .AddCacheManager(m =>   //Ê¹ÓÃ»º´æ Ocelot.Cache.CacheManager  ¿ÉÊµÏÖIOcelotCache ×Ô¶¨Òå»º´æ
+            string AuthProviderKey = "GatewayKeyAuth"; //å¯¹åº”é…ç½®æ–‡ä»¶
+            services.AddAuthentication("Bearer")
+                .AddIdentityServerAuthentication(AuthProviderKey, options =>
                 {
-                    m.WithDictionaryHandle();//Ä¬ÈÏ×Öµä´æ´¢
+                    options.Authority = "http://localhost:7200"; //id4 æœåŠ¡åœ°å€
+                    options.ApiName = "UserApi";
+                    options.RequireHttpsMetadata = false;        //ä¸éœ€è¦https
+                    options.SupportedTokens = IdentityServer4.AccessTokenValidation.SupportedTokens.Both;
+                });
+
+            services.AddOcelot()                            //é‡ç‚¹åœ¨é…ç½®æ–‡ä»¶ configuration.json
+                .AddConsul()                                //ä½¿ç”¨consulæ²»ç†æœåŠ¡ Ocelot.Provider.Consul
+                .AddCacheManager(m =>                       //ä½¿ç”¨ç¼“å­˜ Ocelot.Cache.CacheManager  å¯å®ç°IOcelotCache è‡ªå®šä¹‰ç¼“å­˜
+                {
+                    m.WithDictionaryHandle();//é»˜è®¤å­—å…¸å­˜å‚¨
                 })
-                .AddPolly(); //Ë²Ì¬¹ÊÕÏ¿â ÏŞÁ÷  Ocelot.Provider.Polly
+                .AddPolly();                                //ç¬æ€æ•…éšœåº“ é™æµ  Ocelot.Provider.Polly
         }
 
-        // ÅäÖÃÇëÇó¹ÜµÀ
+        // é…ç½®è¯·æ±‚ç®¡é“
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseOcelot().Wait();

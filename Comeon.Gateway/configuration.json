@@ -63,6 +63,11 @@
         "Period": "1s", // 统计时段 1s, 5m, 1h, 1d内
         "Limit": 1, //最多访问几次
         "PeriodTimespan": 5 // 超限之后 多少时间后才能继续请求(秒)
+      },
+
+      "AuthenticationOptions": { //id4 鉴权
+        "AuthenticationProviderKey": "GatewayKeyAuth",
+        "AllowedScope": []
       }
     }
   ],
