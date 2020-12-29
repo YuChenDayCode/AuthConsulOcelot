@@ -54,15 +54,15 @@
       },
 
       "FileCacheOptions": { //缓存配置
-        "TtlSeconds": 15
+        "TtlSeconds": 5
       },
 
       "RateLimitOptions": { //限流
-        "ClientWhitelist": [ "Yuchen" ], //白名单 ClientId 区分大小写
+        "ClientWhitelist": [ "AuthTest" ], //白名单 ClientId 区分大小写
         "EnableRateLimiting": true, //是否启用限流
         "Period": "1s", // 统计时段 1s, 5m, 1h, 1d内
-        "Limit": 1, //最多访问几次
-        "PeriodTimespan": 5 // 超限之后 多少时间后才能继续请求(秒)
+        "Limit": 5, //最多访问几次
+        "PeriodTimespan": 3 // 超限之后 多少时间后才能继续请求(秒)
       },
 
       "AuthenticationOptions": { //id4 鉴权
